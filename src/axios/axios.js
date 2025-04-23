@@ -9,6 +9,7 @@ const api = axios.create({
 
 const sheets = {
     getUsers:()=>api.get("user"),
+    getEvents:()=>api.get("evento"),
     postLogin:(user) => api.post("login/", user),
     deleteUser:(id) => api.delete("/user/"+ id),
     deleteEvent:(id) => api.delete("evento/"+ id)

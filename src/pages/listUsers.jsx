@@ -52,7 +52,7 @@ function listUsers() {
     try{
       await api.deleteUser(id);
       await getUsers();
-      showAlert("succes", "Usuário apagado com sucesso");
+      showAlert("success", "Usuário apagado com sucesso");
     }catch(error){
       console.log("erro ao deletar usuario", error);
       showAlert("error", error.response.data.error);
@@ -91,7 +91,7 @@ function listUsers() {
 
   return (
     <div>
-      <Snackbar open={alert.open} autoHideDurantion={3000} onClose={handleCloseAlert} anchorOrigin={{vertical:"top", horizontal:"center"}}>
+      <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleCloseAlert} anchorOrigin={{vertical:"top", horizontal:"center"}}>
         <Alert onClose={handleCloseAlert} severity={alert.severity} sx={{width: "100%"}}>
           {alert.message}
         </Alert>

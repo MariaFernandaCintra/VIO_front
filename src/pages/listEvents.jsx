@@ -16,7 +16,7 @@ import DeleteIcon from "@mui/icons-material/Delete"
 import { Link, useNavigate } from "react-router-dom";
 
 
-function listEvents() {
+function ListEvents() {
     const [events, setEvents] = useState([]);
     const [alert, setAlert] = useState({
       //visibilidade
@@ -36,7 +36,7 @@ function listEvents() {
       setAlert({...alert, open: false})
     };
     const navigate = useNavigate();
-    async function getUsers() {
+    async function getEvents() {
       // Chamada da Api
       await api.getEvents().then(
         (response) => {
@@ -49,11 +49,11 @@ function listEvents() {
       );
     }
   
-    async function deleteEvent(id){
+    async function deleteEvent(id_evento){
       try{
-        await api.deleteEvent(id);
+        await api.deleteEvent(id_evento);
         await getEvents();
-        showAlert("succes", "Evento apagado com sucesso");
+        showAlert("success", "Evento apagado com sucesso");
       }catch(error){
         console.log("erro ao deletar evento", error);
         showAlert("error", "Erro ao encontrar evento");
@@ -63,14 +63,13 @@ function listEvents() {
     const listEvents = events.map((event) => {
       return (
         <TableRow key={event.id_evento}>
-          <TableCell align="center">{user.nome}</TableCell>
-          <TableCell align="center">{user.descricao}</TableCell>
-          <TableCell align="center">{user.data_hora}</TableCell>
-          <TableCell align="center">{user.local}</TableCell>
-          <TableCell align="center">{user.data_hora}</TableCell>
-  
+          <TableCell align="center">{event.nome}</TableCell>
+          <TableCell align="center">{event.descricao}</TableCell>
+          <TableCell align="center">{event.data_hora}</TableCell>
+          <TableCell align="center">{event.local}</TableCell>
+
           <TableCell align="center">
-            <IconButton onClick={() => deleteEvent(event.id)}>
+            <IconButton onClick={() => deleteEvent(event.id_evento)}>
               <DeleteIcon color="error"/>
             </IconButton>
           </TableCell>
@@ -87,14 +86,14 @@ function listEvents() {
       // if(!localStorage.getItem('authenticated')){
       //   navigate("/")
       // }
-      getUsers();
+      getEvents();
     }, []);
   
   
   
     return (
       <div>
-        <Snackbar open={alert.open} autoHideDurantion={3000} onClose={handleCloseAlert} anchorOrigin={{vertical:"top", horizontal:"center"}}>
+        <Snackbar open={alert.open} autoHideDuration={3000} onClose={handleCloseAlert} anchorOrigin={{vertical:"top", horizontal:"center"}}>
           <Alert onClose={handleCloseAlert} severity={alert.severity} sx={{width: "100%"}}>
             {alert.message}
           </Alert>
@@ -128,5 +127,5 @@ function listEvents() {
       </div>
     );
   }
-  export default listEvents;
+  export default ListEvents;
   
