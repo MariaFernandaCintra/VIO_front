@@ -132,7 +132,7 @@ function ListEvents() {
       />
 
       {events.length === 0 ? (
-        <p>Carregando Eventos</p>
+        <p style={{ marginTop: "60px"}}>Carregando Eventos</p>
       ) : (
         <div>
           <h5>Lista de eventos</h5>
