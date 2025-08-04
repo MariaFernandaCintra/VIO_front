@@ -1,6 +1,6 @@
 import { useState } from "react";
-import sheets from "../axios/axios"; 
-import { TextField, Button } from "@mui/material";
+import sheets from "../axios/axios";
+import { TextField, Button, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
 function CreateEvent() {
@@ -9,7 +9,7 @@ function CreateEvent() {
     descricao: "",
     data_hora: "",
     local: "",
-    fk_id_organizador: 1, 
+    fk_id_organizador: 1,
   });
   const [imagem, setImagem] = useState(null);
 
@@ -33,8 +33,25 @@ function CreateEvent() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} style={{ padding: 20 }}>
+    <Box
+      sx={{
+        backgroundColor: "#ffe5e5", // fundo rosado
+        minHeight: "100vh",
+        padding: 4,
+      }}
+    >
+      <Typography
+        variant="h4"
+        align="center"
+        sx={{ color: "#a00000", mb: 3, fontWeight: "bold" }}
+      >
+        Criar Evento
+      </Typography>
+
+      <form
+        onSubmit={handleSubmit}
+        style={{ padding: 20, maxWidth: 500, margin: "0 auto" }}
+      >
         <TextField
           fullWidth
           name="nome"
@@ -69,13 +86,36 @@ function CreateEvent() {
           onChange={handleFileChange}
           style={{ marginBottom: 16 }}
         />
-        <Button fullWidth type="submit" variant="contained" sx={{ mb: 2 }}>
+        <Button
+          fullWidth
+          type="submit"
+          variant="contained"
+          sx={{
+            mb: 2,
+            backgroundColor: "#d32f2f",
+            "&:hover": {
+              backgroundColor: "#b71c1c",
+            },
+          }}
+        >
           Criar Evento
         </Button>
       </form>
-      <Link to="/events">Listar Eventos</Link>
-    </div>
+
+      <Box textAlign="center" mt={2}>
+        <Link
+          to="/events"
+          style={{
+            color: "#a00000",
+            textDecoration: "none",
+            fontWeight: "bold",
+          }}
+        >
+          Listar Eventos
+        </Link>
+      </Box>
+    </Box>
   );
 }
 
-export default CreateEvent;  
+export default CreateEvent;
