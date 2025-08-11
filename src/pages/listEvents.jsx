@@ -78,6 +78,13 @@ function ListEvents() {
             <AddBoxIcon/>
           </IconButton>
         </TableCell>
+        <TableCell>
+          <img 
+          src={`http://localhost:5000/api/v1/evento/imagem/${event.id_evento}`}
+          alt="imagem do evento"
+          style={{width:"80px", height:"80px", objectFit:"cover"}}
+          />
+        </TableCell>
       </TableRow>
     );
   });
@@ -148,6 +155,7 @@ function ListEvents() {
                   <TableCell align="center">Local</TableCell>
                   <TableCell align="center">Excluir</TableCell>
                   <TableCell align="center">Criar Ingresso</TableCell>
+                  <TableCell align="center">Imagem</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>{listEvents}</TableBody>
