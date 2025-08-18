@@ -19,9 +19,7 @@ import ConfirmDelete from "../components/ConfirmDelete";
 function listUsers() {
   const [users, setUsers] = useState([]);
   const [alert, setAlert] = useState({
-    // Visibilidade (false = oculta; true = visível)
     open: false,
-    //nível do alerta (sucess, error, warning, etc)
     severity:"",
     message:""
   });
